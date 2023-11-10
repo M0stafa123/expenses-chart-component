@@ -1,22 +1,27 @@
 let graphs = document.querySelectorAll(".graph div");
-let progress = document.querySelectorAll(".progress");
 let day = document.querySelectorAll(".day");
+let graph = document.querySelector(".graph");
 
 fetch("./data.json")
   .then((res) => res.json())
   .then((data) => {
     for (i of data) {
-      day.forEach((e) => {
-        if (e.dataset.day === i.day) {
-          let amount = document.createElement("span");
-          amount.className = "amount";
-          e.parentElement.prepend(amount);
-          amount.innerHTML = i.amount;
-          e.previousElementSibling.style.height = `${i.amount}%`;
-        }
-      });
+      let div = document.createElement("div");
+      let p = document.createElement("p");
+      let span = document.createElement("span");
+      let amount = document.createElement("span");
+      graph.appendChild(div);
+      div.appendChild(p);
+      div.appendChild(span);
+      div.prepend(amount);
+      amount.className = "amount";
+      p.className = "progress";
+      span.className = "day";
+      span.innerHTML = i.day;
+      p.style.height = `${i.amount}%`;
+      amount.innerHTML = i.amount;
     }
-
+    let progress = document.querySelectorAll(".progress");
     let heightst = Math.max(
       ...Array.from(progress).map((e) => e.style.height.match(/\d+.\d+/g))
     );
