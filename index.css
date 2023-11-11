@@ -102,6 +102,7 @@ main > div:last-of-type {
   .amount {
     opacity: 1 !important;
     display: block !important;
+    border-radius: 3px;
   }
   .progress {
     opacity: 0.6;
